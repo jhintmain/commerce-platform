@@ -1,0 +1,21 @@
+ # env
+ .env
+ .env.*
+ !.env.example
+
+ # build
+ /bin/
+ /tmp/
+ /build/
+
+ # logs
+ *.log
+
+ # go
+ *.exe
+ *.out
+ *.test
+
+ # ide
+ .idea/
+ .vscode/
