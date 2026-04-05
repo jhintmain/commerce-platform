@@ -2,6 +2,7 @@ package server
 
 import (
 	"commerce-platform/internal/config"
+	"commerce-platform/internal/db/generate/db"
 	"commerce-platform/internal/router"
 
 	"go.uber.org/zap"
@@ -10,12 +11,14 @@ import (
 type Server struct {
 	cfg    *config.Config
 	logger *zap.Logger
+	query  *db.Query
 }
 
-func New(cfg *config.Config, logger *zap.Logger) *Server {
+func New(cfg *config.Config, logger *zap.Logger, query *db.Query) *Server {
 	return &Server{
 		cfg:    cfg,
 		logger: logger,
+		query:  query,
 	}
 }
 
