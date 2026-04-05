@@ -1,17 +1,21 @@
 package main
 
 import (
-	"log"
+	"commerce-platform/internal/common/logpkg"
 	"time"
 )
 
 func main() {
-	log.Println("Starting scheduler")
+
+	//cfg := config.Load()
+
+	logger := logpkg.New("scheduler")
+	logger.Info("Starting scheduler")
 
 	ticker := time.NewTicker(5 * time.Second)
 	defer ticker.Stop()
 
 	for range ticker.C {
-		log.Println("Starting thick")
+		logger.Info("Starting thick")
 	}
 }

@@ -20,7 +20,7 @@ type Config struct {
 }
 
 func Load() *Config {
-	_ = godotenv.Load()
+	_ = godotenv.Load(".env.local")
 
 	cfg := &Config{
 

@@ -1,4 +1,4 @@
-package server
+package router
 
 import (
 	"commerce-platform/internal/handler"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewRouter() *gin.Engine {
+func New() *gin.Engine {
 	r := gin.Default()
 
 	healthHandler := handler.NewHealthHandler()

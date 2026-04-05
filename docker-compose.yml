@@ -1,53 +1,53 @@
 services:
-  app:
-    build:
-      context: .
-      dockerfile: deployments/docker/Dockerfile
-    container_name: commerce-app
-    working_dir: /app
-    command: [ "/app/bin/api" ]
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - redis
-      - kafka
-    networks:
-      - commerce-net
-
-  worker:
-    build:
-      context: .
-      dockerfile: deployments/docker/Dockerfile
-    container_name: commerce-worker
-    working_dir: /app
-    command: [ "/app/bin/worker" ]
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - redis
-      - kafka
-    networks:
-      - commerce-net
-
-  scheduler:
-    build:
-      context: .
-      dockerfile: deployments/docker/Dockerfile
-    container_name: commerce-scheduler
-    working_dir: /app
-    command: [ "/app/bin/scheduler" ]
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-      - redis
-      - kafka
-    networks:
-      - commerce-net
+#  app:
+#    build:
+#      context: .
+#      dockerfile: deployments/docker/Dockerfile
+#    container_name: commerce-app
+#    working_dir: /app
+#    command: [ "/app/bin/api" ]
+#    ports:
+#      - "8080:8080"
+#    env_file:
+#      - .env
+#    depends_on:
+#      - mysql
+#      - redis
+#      - kafka
+#    networks:
+#      - commerce-net
+#
+#  worker:
+#    build:
+#      context: .
+#      dockerfile: deployments/docker/Dockerfile
+#    container_name: commerce-worker
+#    working_dir: /app
+#    command: [ "/app/bin/worker" ]
+#    env_file:
+#      - .env
+#    depends_on:
+#      - mysql
+#      - redis
+#      - kafka
+#    networks:
+#      - commerce-net
+#
+#  scheduler:
+#    build:
+#      context: .
+#      dockerfile: deployments/docker/Dockerfile
+#    container_name: commerce-scheduler
+#    working_dir: /app
+#    command: [ "/app/bin/scheduler" ]
+#    env_file:
+#      - .env
+#    depends_on:
+#      - mysql
+#      - redis
+#      - kafka
+#    networks:
+#      - commerce-net
 
   mysql:
     image: mysql:8.0
@@ -72,29 +72,29 @@ services:
     networks:
       - commerce-net
 
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.6.1
-    container_name: commerce-zookeeper
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-    networks:
-      - commerce-net
+#  zookeeper:
+#    image: confluentinc/cp-zookeeper:7.6.1
+#    container_name: commerce-zookeeper
+#    environment:
+#      ZOOKEEPER_CLIENT_PORT: 2181
+#    networks:
+#      - commerce-net
 
-  kafka:
-    image: confluentinc/cp-kafka:7.6.1
-    container_name: commerce-kafka
-    depends_on:
-      - zookeeper
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: commerce-zookeeper:2181
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    networks:
-      - commerce-net
+#  kafka:
+#    image: confluentinc/cp-kafka:7.6.1
+#    container_name: commerce-kafka
+#    depends_on:
+#      - zookeeper
+#    ports:
+#      - "9092:9092"
+#    environment:
+#      KAFKA_BROKER_ID: 1
+#      KAFKA_ZOOKEEPER_CONNECT: commerce-zookeeper:2181
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#    networks:
+#      - commerce-net
 
 volumes:
   mysql-data:
